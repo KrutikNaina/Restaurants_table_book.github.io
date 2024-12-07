@@ -1,0 +1,105 @@
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .a{
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn1 {
+            margin-left: 50px;
+            width: 150px;
+            height: 30px;
+            color: black;
+            border-radius: 3px;
+        }
+    </style>
+
+    {% include 'header.html' %}
+
+</head>
+
+<body>
+
+    <!-- Container (Contact Section) -->
+    <div id="Contact" class="container">
+        <h3 class="text-center">
+            <h1 style="color: #027882;">
+                <center>Contact</center>
+            </h1>
+        </h3>
+        <p class="text-center"><em>
+                <center>We love our fans!</center>
+            </em></p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <img class="img-responsive" src="/media/upload/OnlineShopping.jpg" alt="Oder-Images" width="60%"
+                    id="oder-img">
+            </div>
+            <div class="col-md-6">
+                <form name="f1" action="/invoice/" onsubmit="return validation()" method="POST">
+                    {% csrf_token %}
+                    {% for i in showdata %}
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <h4>First Name: &nbsp; {{ i.rname }}</h4>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <h4>Last Name: &nbsp; {{ i.rlastname }}</h4>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <h4>Email: &nbsp; {{ i.remail }}</h4>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <h4>Phone no: &nbsp; {{ i.rphone }}</h4>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <h4>Person: &nbsp; {{ i.rperson }}</h4>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <h4>Table No.: &nbsp; {{ i.rtable }}</h4>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <h4>Date: &nbsp; {{ i.rdate }}</h4>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <h4>Time: &nbsp; {{ i.rtime }}</h4>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <h4>Comment: &nbsp; {{ i.rcomment }}</h4>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <button class="btn1 pull-right btn-warning"><a href="/delete/{{ i.id }}" onclick=" return confirms()"
+                                    data-toggle="modal" data-placement="bottom" title="Delete" class="a">Cancel</a></button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                </form>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <script>
+        function confirms() {
+            return confirm("Your Table Cancel..!");
+        } 
+    </script>
+
+</body>
+
+</html>
